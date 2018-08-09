@@ -4,15 +4,13 @@ import listData from '../data/todo';
 class TodoList extends Component{
     render(){
         const listElements = listData.map((item, index)=>{
-            return (<li key={item._id}>{item.title}</li>)
+            return (<li className='collection-item' key={item._id}>{item.title}</li>)
         });
         console.log('list:', listData);
         return (
-            <div>
-                <ul>
+                <ul className='collection'>
                     {listElements}
                 </ul>
-            </div>
         );
     }
 }
