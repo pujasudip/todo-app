@@ -9,7 +9,7 @@ class AddItem extends Component{
     handleInputChange = (event)=>{
         const {name, value} = event.target;
 
-        console.log("name: ", name, "value: ", value);
+        // console.log("name: ", name, "value: ", value);
 
         this.setState({
             [name]: value
@@ -32,7 +32,7 @@ class AddItem extends Component{
         const {title, details} = this.state;
         return (
             <form onSubmit={this.handleAddItem}>
-                <h5 className="green s5">Add Item</h5>
+                <h5 className="green white-text center">Add Item</h5>
                 <div className="row">
                     <div className="col s6">
                         <label>Title</label>
