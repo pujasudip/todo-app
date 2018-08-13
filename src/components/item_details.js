@@ -8,6 +8,14 @@ class ItemDetails extends Component {
         itemDetails: {}
     }
 
+
+    async handleDelete(){
+        console.log('Delete item:', this.state.itemDetails._id);
+        await this.props.delete(this.state.itemDetails._id);
+
+        this.props.history.push('/');
+    }
+
     async componentDidMount(){
         const {BASE_URL, API_KEY} = config.api;
         const {item_id} =  this.props.match.params;
@@ -21,7 +29,6 @@ class ItemDetails extends Component {
 
     render(){
         const { itemDetails } = this.state;
-        console.log(itemDetails);
 
         return (
             <div>
@@ -32,6 +39,14 @@ class ItemDetails extends Component {
                     </div>
                 </div>
                 <h4><em>Title: </em>{itemDetails.title}</h4>
+                <div className="row">
+                    <div className="col s6 center">
+                        <button className="btn blue text-darken-1">Toggle Complete</button>
+                    </div>
+                    <div className="col s6 center">
+                        <button className="btn red darken-2" onClick={this.handleDelete.bind(this)}>Delete</button>
+                    </div>
+                </div>
             </div>
         );
     }
