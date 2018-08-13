@@ -1,9 +1,10 @@
 import 'materialize-css/dist/css/materialize.min.css';
 import React, {Component} from 'react';
+import {Route} from 'react-router-dom';
 import TodoList from './todo_list';
 import AddItem from './add_item';
-import listData from '../data/todo';
 import axios from 'axios';
+import Home from './home';
 
 const BASE_URL = 'http://api.reactprototypes.com';
 // const API_KEY = '?key=c618_demouser';
@@ -70,12 +71,16 @@ class App extends Component {
 
     render(){
         // console.log('state:', this.state);
+        console.log('To Do list: ', this.state.items);
 
         return (
             <div className="container">
-                <h1 className="center">To Do List</h1>
-                <AddItem add={this.addItem.bind(this)}/>
-                <TodoList list={this.state.items}/>
+                <Route exact path="/" render={props=>
+                    <Home
+                    add={this.addItem.bind(this)}
+                    list={this.state.items}
+                    {...props} />
+                }/>
             </div>
         );
     }
