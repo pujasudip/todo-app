@@ -19,10 +19,6 @@ class App extends Component {
         }
     }
 
-    componentDidMount(){
-        this.getListData();
-    }
-
     async getListData(){
         // This is where we would call the server for our data
         // 'http://api.reactprototypes.com/todos?key=c416_demouser';
@@ -70,13 +66,11 @@ class App extends Component {
     }
 
     render(){
-        // console.log('state:', this.state);
-        console.log('To Do list: ', this.state.items);
-
         return (
             <div className="container">
                 <Route exact path="/" render={props=>
                     <Home
+                    getList = {this.getListData.bind(this)}
                     add={this.addItem.bind(this)}
                     list={this.state.items}
                     {...props} />
