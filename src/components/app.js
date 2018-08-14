@@ -57,6 +57,17 @@ class App extends Component {
         }
     }
 
+    async toggleItemComplete(id){
+        const {BASE_URL, API_KEY} = config.api;
+
+        try{
+            const resp = await axios.put(`${BASE_URL}/todos/${id}${API_KEY}`);
+            return resp.data.todo;
+        } catch(e){
+            console.log('Toggle error: ', e.message);
+        }
+    }
+
     render(){
         return (
             <div className="container">
@@ -69,7 +80,7 @@ class App extends Component {
                            {...props} />
                    }/>
                    <Route path='/item-details/:item_id' render={(routeProps)=>{
-                       return <ItemDetails delete={this.deleteItem.bind(this)} {...routeProps}/>
+                       return <ItemDetails delete={this.deleteItem.bind(this)} update={this.toggleItemComplete.bind(this)}{...routeProps}/>
                    }} />
                    <Route component={NotFound} />
                </Switch>
